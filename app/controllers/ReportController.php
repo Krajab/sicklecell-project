@@ -1,3 +1,4 @@
+
 <?php
 set_time_limit(0); //60 seconds = 1 minute
 class ReportController extends \BaseController {
@@ -994,6 +995,45 @@ class ReportController extends \BaseController {
 	 * Displays summary statistics on users application usage.
 	 *
 	 */
+	public function sicklecell(){
+		
+	$ageRanges = array('0-4'=>'Under 4 years', 
+	 					'4-18'=>'4 years and over but under 18 years', 
+	 					'18-120'=>'18 years and above');	//	Age ranges - will definitely change in configurations
+		$gender = array(UnhlsPatient::MALE, UnhlsPatient::FEMALE); 	//	Array for gender - male/female
+		$ranges = array('Low', 'Normal', 'High');
+		$accredited = array();
+
+		//	Fetch form filters
+		$date = date('Y-m-d');
+		$from = Input::get('start');
+		if(!$from) $from = date('Y-m-01');
+
+		$to = Input::get('end');
+		if(!$to) $to = $date;
+		
+		$toPlusOne = date_add(new DateTime($to), date_interval_create_from_date_string('1 day'));
+
+		$testCategory = Input::get('test_category');
+		$district = Input::get('district');
+		$tribe = Input::get('tribe');
+
+
+
+		$infectionData = UnhlsTest::getInfectionData($from, $toPlusOne, $testCategory, $district, $tribe);	// array for counts data for each test type and age range
+		
+		return View::make('reports.sicklecell.index')
+					->with('gender', $gender)
+					->with('ageRanges', $ageRanges)
+					->with('ranges', $ranges)
+					->with('infectionData', $infectionData)
+					->with('accredited', $accredited)
+					->withInput(Input::all());
+
+		# code...
+	}
+
+
 	public function userStatistics(){
 
 		//	Fetch form filters

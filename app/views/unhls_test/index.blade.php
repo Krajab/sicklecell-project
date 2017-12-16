@@ -82,14 +82,14 @@
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th>{{trans('messages.date-ordered')}}</th>
-                        <th>{{trans('messages.patient-number')}}</th>
-                        <th>Lab Number</th>
-                        <th>{{trans('messages.visit-number')}}</th>
-                        <th class="col-md-2">{{trans('messages.patient-name')}}</th>
-                        <th class="col-md-1">{{trans('messages.specimen-id')}}</th>
-                        <th>{{ Lang::choice('messages.test',1) }}</th>
-                        <th>{{trans('messages.visit-type')}}</th>
+                        <th class="col-md-2">{{trans('messages.date-ordered')}}</th>
+                        <!-- <th>{{trans('messages.patient-number')}}</th> -->
+                        <th class="col-md-2">Lab Number</th>
+                        <th class="col-md-1">Visit No</th>
+                        <th class="col-md-3">{{trans('messages.patient-name')}}</th>
+                        <th class="col-md-2">{{trans('messages.specimen-id')}}</th>
+                        <th class="col-md-2">{{ Lang::choice('messages.test',1) }}</th>
+                       <!--  <th>{{trans('messages.visit-type')}}</th> -->
                         <th>{{trans('messages.test-request-status')}}</th>
                         <th class="col-md-3">{{trans('messages.test-status')}}</th>
                     </tr>
@@ -104,10 +104,10 @@
                         @endif
                         >
                         <td>{{ date('d-m-Y H:i', strtotime($test->time_created));}}</td>  <!--Date Ordered-->
-                        <td>{{ empty($test->visit->patient->external_patient_number)?
+                        <!-- <td>{{ empty($test->visit->patient->external_patient_number)?
                                 $test->visit->patient->patient_number:
                                 $test->visit->patient->external_patient_number
-                            }}</td> <!--Patient Number -->
+                            }}</td> --> <!--Patient Number -->
                         <td>{{$test->visit->patient->ulin}}</td> <!--unhls terminology -->
                         <td>
                             {{ empty($test->visit->visit_number)?
@@ -118,7 +118,7 @@
                             '.$test->visit->patient->getAge('Y'). ')'}}</td> <!--Patient Name -->
                         <td>{{ $test->getSpecimenId() }}</td> <!--Specimen ID -->
                         <td>{{ $test->testType->name }}</td> <!--Test-->
-                        <td>{{ $test->visit->visit_type }}</td> <!--Visit Type -->
+                       <!--  <td>{{ $test->visit->visit_type }}</td> --> <!--Visit Type -->
                         <!-- ACTION BUTTONS -->
                         <td>
                             <a class="btn btn-sm btn-success"

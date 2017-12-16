@@ -7,7 +7,7 @@
 	</ol>
 </div>
 
-<div class='container-fluid'>
+<!-- <div class='container-fluid'>
 	<div class='row'>
 		<div class='col-md-12'>
 			{{ Form::open(array('route' => array('unhls_patient.index'), 'class'=>'form-inline',
@@ -23,9 +23,9 @@
 			{{ Form::close() }}
 		</div>
 	</div>
-</div>
+</div> -->
 
-<br>
+<!-- <br> -->
 
 @if (Session::has('message'))
 	<div class="alert alert-info">{{ trans(Session::get('message')) }}</div>
@@ -43,16 +43,17 @@
 		</div>
 	</div>
 	<div class="panel-body">
-		<table class="table table-striped table-hover table-condensed">
+		<table class="table table-striped table-hover table-bordered search-table">
 			<thead>
 				<tr>
-					<th>{{trans('messages.patient-number')}}</th>
-					<th>Lab ID</th>
+					<th>{{trans('Sickle ID')}}</th>
 					<th>{{Lang::choice('messages.name',1)}}</th>
 					<th>{{trans('messages.gender')}}</th>
 					<th>{{trans('messages.age')}}</th>
-					<th>{{trans('messages.residence-village')}}</th>
-					<th>{{trans('messages.workplace-village')}}</th>
+					<th>Tribe</th>
+					<th>District</th>
+					<th>Phone Number</th>
+					<th>Results</th>
 					<th>{{trans('messages.actions')}}</th>
 				</tr>
 			</thead>
@@ -61,32 +62,22 @@
 				<tr  @if(Session::has('activepatient'))
 						{{(Session::get('activepatient') == $patient->id)?"class='info'":""}}
 					@endif
-				>
 					<td>{{ $patient->patient_number }}</td>
 					<td>{{ $patient->ulin}}</td>
 					<td>{{ $patient->name }}</td>
 					<td>{{ ($patient->gender==0?trans('messages.male'):trans('messages.female')) }}</td>
 					<td>{{ $patient->getAge() }}</td>
-					<td>{{ $patient->village_residence }}</td>
-					<td>{{ $patient->village_workplace  }}</td>
+					<td>{{ $patient->tribe->name}}</td>
+					<td>{{ $patient->district->name }}</td>
+					<td>{{ $patient->phone_number }}</td>
 					<td>
-						@if($clinicianUI)
-							@if(Auth::user()->can('manage_appointments'))
-							<!-- can create visit -->
-							<a class="btn btn-sm btn-primary" 
-								href="{{ URL::route('visit.create', array('patient_id' => $patient->id)) }}">
-								<span class="glyphicon glyphicon-plus-sign"></span>
-								Make Appointment
-							</a>
+						@if(!is_null($patient->visits->first()))
+							@if(!is_null($patient->visits->first()->tests))
+								{{ $patient->visits->first()->tests->first()->testResults->first()->result }}
 							@endif
-						@elseif(Auth::user()->can('request_test'))
-						<!-- can create visit -->
-						<a class="btn btn-sm btn-info"
-							href="{{ URL::route('unhls_test.create', array('patient_id' => $patient->id)) }}">
-							<span class="glyphicon glyphicon-edit"></span>
-							{{ trans('messages.new-test') }}
-						</a>
 						@endif
+					</td>
+					<td>
 						<!-- show the patient (uses the show method found at GET /patient/{id} -->
 						<a class="btn btn-sm btn-success" href="{{ URL::route('unhls_patient.show', array($patient->id)) }}" >
 							<span class="glyphicon glyphicon-eye-open"></span>

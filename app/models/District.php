@@ -2,6 +2,7 @@
 
 class District extends Eloquent
 {
-	protected $table = "unhls_districts";
+	public $timestamps = false;
+	protected $table = "districts";
 	
 }

@@ -15,12 +15,12 @@ class CreatekBLIStables extends Migration {
 
         echo "PATIENCE! this will take a while...\n";
 
-        Schema::create('unhls_districts', function($table)
+        /*Schema::create('unhls_districts', function($table)
         {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
-        });
+        });*/
 
         Schema::create('unhls_facility_ownership', function($table){
             $table->increments('id');
@@ -46,7 +46,7 @@ class CreatekBLIStables extends Migration {
             $table->integer('ownership_id')->unsigned();
 
             $table->foreign('level_id')->references('id')->on('unhls_facility_level');
-            $table->foreign('district_id')->references('id')->on('unhls_districts');
+            // $table->foreign('district_id')->references('id')->on('unhls_districts');
             $table->foreign('ownership_id')->references('id')->on('unhls_facility_ownership');
 
             $table->timestamps();
@@ -78,25 +78,35 @@ class CreatekBLIStables extends Migration {
             $table->timestamps();
         });
 
+        Schema::create('tribes', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->string('name');
+
+            $table->timestamps();
+        });
+
         Schema::create('unhls_patients', function(Blueprint $table)
         {
             $table->increments('id')->unsigned();
-            $table->string('patient_number')->unique();
+            $table->string('patient_number')->nullable();
             $table->string('ulin')->nullable();//todo: should be unique
-            $table->string('nin')->nullable();//todo: should be unique
             $table->string('name', 100);
             $table->date('dob');
             $table->tinyInteger('gender')->default(0);
-            $table->string('email', 100)->nullable();
-            $table->string('address', 150)->nullable();
-            $table->string('village_residence', 150)->nullable();
-            $table->string('village_workplace', 150)->nullable();
+            // $table->string('email', 100)->nullable();
+            $table->integer('tribe_id')->unsigned()->nullable();
+            $table->integer('district_id')->unsigned()->nullable();
+            // $table->string('address', 150)->nullable();
+            // $table->string('village_residence', 150)->nullable();
+            // $table->string('village_workplace', 150)->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('occupation')->nullable();
+            $table->string('results')->nullable();
+            // $table->string('occupation')->nullable();
             $table->string('external_patient_number', 20)->nullable();
             $table->integer('created_by')->unsigned()->default(0);
 
-            $table->index('external_patient_number');
+            $table->foreign('tribe_id')->references('id')->on('tribes');
             $table->index('created_by');
 
             $table->softDeletes();

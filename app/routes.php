@@ -484,6 +484,11 @@ Route::group(array("before" => "auth"), function()
             "as"   => "reports.aggregate.infection",
             "uses" => "ReportController@infectionReport"
         ));
+        Route::any("/sicklecell", array(
+            "as"   => "reports.aggregate.sicklecell",
+            "uses" => "ReportController@sicklecell"
+        ));
+
 
         Route::any("/userstatistics", array(
             "as"   => "reports.aggregate.userStatistics",
@@ -880,4 +885,9 @@ Route::group(array("before" => "auth"), function()
         "uses" => "StockRequisitionController@fetch"
     ));
 
+     Route::resource('tribe', 'TribeController');
+     Route::get("/tribe/{id}/delete", array(
+            "as"   => "tribe.delete",
+            "uses" => "TribeController@delete"
+    ));
 });

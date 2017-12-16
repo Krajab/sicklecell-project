@@ -28,10 +28,10 @@ class CreateEquipmentBreakdownTable extends Migration {
 			$table->integer('in_charge_id');	
 			$table->integer('priority');					    	
 
-		    $table->foreign('district_id')->references('id')->on('unhls_districts');
+		    // $table->foreign('district_id')->references('id')->on('unhls_districts');
 		    $table->foreign('facility_id')->references('id')->on('unhls_facilities');
 		    $table->foreign('year_id')->references('id')->on('unhls_financial_years');
-		    $table->foreign('equipment_id')->references('id')->on('unhls_equipment_inventory');
+		    // $table->foreign('equipment_id')->references('id')->on('unhls_equipment_inventory');
 		    $table->timestamps();
 		});		
 	}

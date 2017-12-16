@@ -27,9 +27,19 @@ class UnhlsPatient extends Eloquent
 	 */
     public function visits()
     {
-        return $this->hasMany('UnhlsVisit');
+        return $this->hasMany('UnhlsVisit', 'patient_id');
     }
 
+     public function district()
+    {
+        return $this->belongsTo('District');
+    } 
+    public function tribe()
+    {
+        return $this->belongsTo('Tribe');
+    }
+
+   
 	/**
 	 * Patient Age 
 	 *
