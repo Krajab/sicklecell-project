@@ -9,12 +9,14 @@
     </head>
     <body>
         <div class="container login-page">
-            <div class="header">
+            <!-- <div class="header">
                 @include('user.loginHeader')
-            </div>
+            </div> -->
             <div class="login-form">
                 <div class="form-head">
-                    <h4> Login </h4>
+                    <!-- <h3> Login </h3> -->
+                      <p class="login-img"><p style="text-align:center"><img src="i/coat_of_arms_of_uganda.png" alt="" width="90" height="90"> </p> 
+                     <h4 align="center"><font color="black"><b> Sickle Cell Disease (LIMS)</b></font></h4>
                     @if($errors->all())
                         <div class="alert alert-danger">
                             {{ HTML::ul($errors->all()) }}
@@ -60,14 +62,13 @@
                 <div class="smaller-text alone foot">
                     <p><a href="i/guide.pdf">User Guide</a></p>
                     <p>
-                        {{ Config::get('kblis.name') }} - a port of the Basic Laboratory Information System
-                         (BLIS) to Laravel by iLabAfrica. BLIS was originally developed by C4G.
+                        {{ Config::get('kblis.name') }} -  ASLM Laboratory Information System (ALIS). Step towards fighting Sickle cell in Uganda
                     </p>
                 </div>
             </div>
-            <div class="footer">
+            <!-- <div class="footer">
             @include('user.loginFooter')
-            </div>
+            </div> -->
 
         </div>
     </body>

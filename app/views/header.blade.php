@@ -5,16 +5,16 @@
             <div class="container-fluid">
 
                 <ul class="top_links l_tinynav1">
-                    <li>
+                    <!-- <li>
                         <a href="#">
                             <span><i class="icon ion-chevron-right"></i></span>
                             {{ \Config::get('constants.DISTRICT_NAME') }}
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="#">
                             <span><i class="icon ion-chevron-right"></i></span>
-                            {{ \Config::get('constants.FACILITY_NAME') }}
+                            {{ 'UNHLS SICKLECELL LAB' }}
                         </a>
                     </li>   
 

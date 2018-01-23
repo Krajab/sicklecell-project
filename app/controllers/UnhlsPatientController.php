@@ -42,7 +42,7 @@ class UnhlsPatientController extends \BaseController {
 		//Create Patient
 		$tribes = ['']+Tribe::orderBy('name','ASC')->lists('name', 'id');
 		
-		$ranges = Measure::find(32)->measureRanges;
+		$ranges = Measure::find(2)->measureRanges;
 
 		$measureRanges = [];
 		$measureRanges[0] = 'Select Result';
@@ -78,6 +78,7 @@ class UnhlsPatientController extends \BaseController {
 		} else {
 			$patient = new UnhlsPatient;
 			$patient->patient_number = Input::get('patient_number');
+			$patient->field_id = Input::get('field_id');
 			$patient->name = Input::get('name');
 			$patient->gender = Input::get('gender');
 			$patient->dob = Input::get('dob');
@@ -99,7 +100,7 @@ class UnhlsPatientController extends \BaseController {
 			$visit->save();
 
             $specimen = new UnhlsSpecimen;
-            $specimen->specimen_type_id = 22;
+            $specimen->specimen_type_id = 1;
             $specimen->accepted_by = Auth::user()->id;
             $specimen->time_collected = date('Y-m-d H:i:s');
             $specimen->time_accepted = date('Y-m-d H:i:s');
@@ -107,7 +108,7 @@ class UnhlsPatientController extends \BaseController {
 
             $test = new UnhlsTest;
             $test->visit_id = $visit->id;
-            $test->test_type_id = 10;
+            $test->test_type_id = 1;
             $test->specimen_id = $specimen->id;
             $test->test_status_id = UnhlsTest::VERIFIED;
             $test->created_by = Auth::user()->id;
@@ -188,8 +189,9 @@ class UnhlsPatientController extends \BaseController {
 				->withInput(Input::except('password'));
 		} else {
 			// Update
-			$patient = new UnhlsPatient;
+			$patient = UnhlsPatient::find($id);
 			$patient->patient_number = Input::get('patient_number');
+			$patient->field_id = Input::get('field_id');
 			$patient->name = Input::get('name');
 			$patient->gender = Input::get('gender');
 			$patient->dob = Input::get('dob');
@@ -201,8 +203,8 @@ class UnhlsPatientController extends \BaseController {
 			$patient->save();
 
 			// redirect
-			$url = Session::get('SOURCE_URL');
-			return Redirect::to($url)
+			// $url = Session::get('unhls_patient.index');
+			return Redirect::to('unhls_patient')
 			->with('message', 'The patient details were successfully updated!') ->with('activepatient',$patient ->id);
 
 		}

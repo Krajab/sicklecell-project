@@ -7,7 +7,7 @@
 	  <li class="active">{{ trans('messages.infection-report') }}</li>
 	</ol>
 </div>
-{{ Form::open(array('route' => array('reports.aggregate.infection'), 'class' => 'form-inline', 'role' => 'form')) }}
+{{ Form::open(array('route' => array('reports.aggregate.sicklecell'), 'class' => 'form-inline', 'role' => 'form')) }}
 <!-- <div class='container-fluid'> -->
 	<div class="row">
 		<div class="col-md-3">
@@ -15,7 +15,7 @@
 				<div class="col-md-2">
 					{{ Form::label('start', trans("messages.from")) }}
 				</div>
-				<div class="col-md-10">
+				<div class="col-md-8">
 					{{ Form::text('start', isset($input['start'])?$input['start']:date('Y-m-d'), 
 				        array('class' => 'form-control standard-datepicker')) }}
 			    </div>
@@ -26,14 +26,34 @@
 				<div class="col-md-2">
 			    	{{ Form::label('end', trans("messages.to")) }}
 			    </div>
-				<div class="col-md-10">
+				<div class="col-md-8">
 				    {{ Form::text('end', isset($input['end'])?$input['end']:date('Y-m-d'), 
 				        array('class' => 'form-control standard-datepicker')) }}
 		        </div>
 	    	</div>
 	    </div>
+	      	<div class="col-md-4">
+	        	<div class="col-md-2">
+	        	{{ Form::label('district', Lang::choice('District',1)) }}
+	        	</div>
+	        		<div class="col-md-8">
+			            {{ Form::select('district', array(0 => '-- All --')+district::all()->sortBy('name')->lists('name','id'),
+			            	isset($input['district'])?$input['district']:0, array('class' => 'form-control')) }}
+	        		</div>
+	    	</div>
 	    <div class="col-md-4">
-	        <div class="col-md-4">
+	    	<div class="row">
+	        <div class="col-md-2">
+	        	{{ Form::label('tribe', Lang::choice('Tribe',1)) }}
+	        </div>
+	        <div class="col-md-8">
+			  {{ Form::select('tribe', array(0 => '-- All --')+tribe::all()->sortBy('name')->lists('name','id'),
+			    isset($input['tribe'])?$input['tribe']:0, array('class' => 'form-control')) }}
+	        </div>
+	    </div>
+	    </div>
+	    <div class="col-md-4">
+	        <div class="col-md-2">
 	        	{{ Form::label('test_type', Lang::choice('messages.test-category',1)) }}
 	        </div>
 	        <div class="col-md-8">

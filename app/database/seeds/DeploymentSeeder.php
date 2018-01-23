@@ -1,105 +1,139 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
+class DeploymentSeeder extends DatabaseSeeder
+{
+    public function run()
+    {
+        /* DISTRICT table */
+        $districtsData = array(
+            array("id" => \Config::get('constants.DISTRICT_ID'),
+                'name' => \Config::get('constants.DISTRICT_NAME')
+                ),
+        );
 
-class UpdateMicrobiologyFunctionalities extends Migration {
-
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('culture_observations', function(Blueprint $table)
-		{
-            $table->dropForeign('culture_observations_culture_duration_id_foreign');
-			$table->dropColumn('culture_duration_id');
-		});
-
-		Schema::table('drug_susceptibility', function(Blueprint $table)
-		{
-			$table->dropColumn('zone');
-		});
-
-		Schema::table('drug_susceptibility', function(Blueprint $table)
-		{
-            $table->integer('zone_diameter')->unsigned()->nullable()->after('drug_susceptibility_measure_id');
-		});
-
-        Schema::create('gram_stain_ranges', function($table)
+        foreach ($districtsData as $district)
         {
-            $table->increments('id');
-            $table->string('name');
-        });
+            $districts[] = District::create($district);
+        }
+        $this->command->info('Districts seeded');
 
-        Schema::create('gram_stain_results', function($table)
-        {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('test_id')->unsigned();
-            $table->integer('gram_stain_range_id')->unsigned();
-
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('test_id')->references('id')->on('unhls_tests');
-            $table->foreign('gram_stain_range_id')->references('id')->on('gram_stain_ranges');
-        });
-
-        Schema::create('gram_break_points', function($table)
-        {
-            $table->increments('id');
-            $table->integer('drug_id')->unsigned();
-            $table->integer('gram_stain_range_id')->unsigned();
-            $table->decimal('resistant_max', 4, 1)->nullable();
-            $table->decimal('intermediate_min', 4, 1)->nullable();
-            $table->decimal('intermediate_max', 4, 1)->nullable();
-            $table->decimal('sensitive_min', 4, 1)->nullable();
-
-            $table->foreign('drug_id')->references('id')->on('drugs');
-            $table->foreign('gram_stain_range_id')->references('id')->on('gram_stain_ranges');
-        });
-
-        /* gram drug susceptibility table */
-        Schema::create('gram_drug_susceptibility', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('drug_id')->unsigned();
-            $table->integer('gram_stain_result_id')->unsigned();
-            $table->integer('drug_susceptibility_measure_id')->unsigned();
-            $table->integer('zone_diameter')->unsigned()->nullable();
-            $table->softDeletes();
-            $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('drug_id')->references('id')->on('drugs');
-            $table->foreign('gram_stain_result_id')->references('id')->on('gram_stain_results');
-            $table->foreign('drug_susceptibility_measure_id')->references('id')->on('drug_susceptibility_measures');
-        });
-
-        Schema::create('zone_diameters', function($table)
-        {
-            $table->increments('id');
-            $table->integer('drug_id')->unsigned();
-            $table->integer('organism_id')->unsigned();
-            $table->decimal('resistant_max', 4, 1)->nullable();
-            $table->decimal('intermediate_min', 4, 1)->nullable();
-            $table->decimal('intermediate_max', 4, 1)->nullable();
-            $table->decimal('sensitive_min', 4, 1)->nullable();
-
-            $table->foreign('drug_id')->references('id')->on('drugs');
-            $table->foreign('organism_id')->references('id')->on('organisms');
-        });
-
-        // seeding on the go! STARTS HERE
-
-        Eloquent::unguard();
-
-
-        DB::disableQueryLog();
-        DB::unprepared(file_get_contents(base_path() . "/app/database/seeds/districts.sql"));
-        DB::enableQueryLog();
+        District::create(['name' => 'Buikwe']);
+        District::create(['name' => 'Bukomansimbi']);
+        District::create(['name' => 'Butambala']);
+        District::create(['name' => 'Buvuma']);
+        District::create(['name' => 'Gomba']);
+        District::create(['name' => 'Kalangala']);
+        District::create(['name' => 'Kalungu']);
+        District::create(['name' => 'Kayunga']);
+        District::create(['name' => 'Kiboga']);
+        District::create(['name' => 'Kyankwanzi']);
+        District::create(['name' => 'Luweero']);
+        District::create(['name' => 'Lwengo']);
+        District::create(['name' => 'Lyantonde']);
+        District::create(['name' => 'Masaka']);
+        District::create(['name' => 'Mityana']);
+        District::create(['name' => 'Mpigi']);
+        District::create(['name' => 'Mubende']);
+        District::create(['name' => 'Mukono']);
+        District::create(['name' => 'Nakaseke']);
+        District::create(['name' => 'Nakasongola']);
+        District::create(['name' => 'Rakai']);
+        District::create(['name' => 'Ssembabule']);
+        District::create(['name' => 'Wakiso']);
+        District::create(['name' => 'Amuria']);
+        District::create(['name' => 'Budaka']);
+        District::create(['name' => 'Bududa']);
+        District::create(['name' => 'Bugiri']);
+        District::create(['name' => 'Bukedea']);
+        District::create(['name' => 'Bukwa']);
+        District::create(['name' => 'Bulambuli']);
+        District::create(['name' => 'Busia']);
+        District::create(['name' => 'Butaleja']);
+        District::create(['name' => 'Buyende']);
+        District::create(['name' => 'Iganga']);
+        District::create(['name' => 'Jinja']);
+        District::create(['name' => 'Kaberamaido']);
+        District::create(['name' => 'Kaliro']);
+        District::create(['name' => 'Kamuli']);
+        District::create(['name' => 'Kapchorwa']);
+        District::create(['name' => 'Katakwi']);
+        District::create(['name' => 'Kibuku']);
+        District::create(['name' => 'Kumi']);
+        District::create(['name' => 'Kween']);
+        District::create(['name' => 'Luuka']);
+        District::create(['name' => 'Manafwa']);
+        District::create(['name' => 'Mayuge']);
+        District::create(['name' => 'Mbale']);
+        District::create(['name' => 'Namayingo']);
+        District::create(['name' => 'Namutumba']);
+        District::create(['name' => 'Ngora']);
+        District::create(['name' => 'Pallisa']);
+        District::create(['name' => 'Serere']);
+        District::create(['name' => 'Sironko']);
+        District::create(['name' => 'Soroti']);
+        District::create(['name' => 'Tororo']);
+        District::create(['name' => 'Abim']);
+        District::create(['name' => 'Adjumani']);
+        District::create(['name' => 'Agago']);
+        District::create(['name' => 'Alebtong']);
+        District::create(['name' => 'Amolatar']);
+        District::create(['name' => 'Amudat']);
+        District::create(['name' => 'Amuru']);
+        District::create(['name' => 'Apac']);
+        District::create(['name' => 'Arua']);
+        District::create(['name' => 'Dokolo']);
+        District::create(['name' => 'Gulu']);
+        District::create(['name' => 'Kaabong']);
+        District::create(['name' => 'Kitgum']);
+        District::create(['name' => 'Koboko']);
+        District::create(['name' => 'Kole']);
+        District::create(['name' => 'Kotido']);
+        District::create(['name' => 'Lamwo']);
+        District::create(['name' => 'Lira']);
+        District::create(['name' => 'Maracha']);
+        District::create(['name' => 'Moroto']);
+        District::create(['name' => 'Moyo']);
+        District::create(['name' => 'Nakapiripirit']);
+        District::create(['name' => 'Napak']);
+        District::create(['name' => 'Nebbi']);
+        District::create(['name' => 'Nwoya']);
+        District::create(['name' => 'Otuke']);
+        District::create(['name' => 'Oyam']);
+        District::create(['name' => 'Pader']);
+        District::create(['name' => 'Yumbe']);
+        District::create(['name' => 'Zombo']);
+        District::create(['name' => 'Buhweju']);
+        District::create(['name' => 'Buliisa']);
+        District::create(['name' => 'Bundibugyo']);
+        District::create(['name' => 'Bushenyi']);
+        District::create(['name' => 'Hoima']);
+        District::create(['name' => 'Ibanda']);
+        District::create(['name' => 'Isingiro']);
+        District::create(['name' => 'Kabale']);
+        District::create(['name' => 'Kabarole']);
+        District::create(['name' => 'Kamwenge']);
+        District::create(['name' => 'Kanungu']);
+        District::create(['name' => 'Kasese']);
+        District::create(['name' => 'Kibaale']);
+        District::create(['name' => 'Kiruhura']);
+        District::create(['name' => 'Kiryandongo']);
+        District::create(['name' => 'Kisoro']);
+        District::create(['name' => 'Kyegegwa']);
+        District::create(['name' => 'Kyenjojo']);
+        District::create(['name' => 'Masindi']);
+        District::create(['name' => 'Mbarara']);
+        District::create(['name' => 'Mitooma']);
+        District::create(['name' => 'Ntoroko']);
+        District::create(['name' => 'Ntungamo']);
+        District::create(['name' => 'Rubirizi']);
+        District::create(['name' => 'Rukungiri']);
+        District::create(['name' => 'Sheema']);
+        District::create(['name' => 'Omoro']);
+        District::create(['name' => 'Kagadi']);
+        District::create(['name' => 'Kakumiro']);
+        District::create(['name' => 'Rubanda']);
+        District::create(['name' => 'Bukwo']);
+        $this->command->info('Other Districts seeded');
 
 
         /* Facility Ownership table */
@@ -115,7 +149,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             $facilityownerships[] = UNHLSFacilityOwnership::create($facilityownership);
         }
-        echo "Facility Ownerships seeded\n";
+        $this->command->info('Facility Ownerships seeded');
 
 
         /* Facility Levels table */
@@ -132,7 +166,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             $facilitylevels[] = UNHLSFacilityLevel::create($facilitylevel);
         }
-        echo "Facility Levels seeded\n";
+        $this->command->info('Facility Levels seeded');
 
 
         /* Facility table */
@@ -150,7 +184,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             $facilitys[] = UNHLSFacility::create($facility);
         }
-        echo "Facility seeded\n";
+        $this->command->info('Facility seeded');
 
 
         /* Users table */
@@ -166,7 +200,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             $users[] = User::create($user);
         }
-        echo "users seeded\n";
+        $this->command->info('users seeded');
 
 
 
@@ -197,7 +231,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             $bbactions[] = BbincidenceAction::create($bbaction);
         }
-        echo "BB Actions seeded\n";
+        $this->command->info('BB Actions seeded');
 
 
         /* BB Causes table */
@@ -219,7 +253,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             $bbcauses[] = BbincidenceCause::create($bbcause);
         }
-        echo "BB Causes seeded\n";
+        $this->command->info('BB Causes seeded');
 
         /* BB Natures table */
         $bbnaturesData = array(
@@ -260,7 +294,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             $bbnatures[] = BbincidenceNature::create($bbnature);
         }
-        echo "BB Natures seeded\n";
+        $this->command->info('BB Natures seeded');
 
 
         /* Test Phase table */
@@ -273,7 +307,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             TestPhase::create($test_phase);
         }
-        echo "test_phases seeded\n";
+        $this->command->info('test_phases seeded');
 
         /* Test Status table */
         $test_statuses = array(
@@ -288,7 +322,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             TestStatus::create($test_status);
         }
-        echo "test_statuses seeded\n";
+        $this->command->info('test_statuses seeded');
 
         /* Specimen Status table */
         $specimen_statuses = array(
@@ -300,7 +334,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             SpecimenStatus::create($specimen_status);
         }
-        echo "specimen_statuses seeded\n";
+        $this->command->info('specimen_statuses seeded');
 
         /* Rejection Reasons table */
         $rejection_reasons_array = array(
@@ -325,7 +359,8 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         {
             $rejection_reasons[] = RejectionReason::create($rejection_reason);
         }
-        echo "rejection_reasons seeded\n";
+        $this->command->info('rejection_reasons seeded');
+
 
         /* Permissions table */
         $permissions = array(
@@ -359,7 +394,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         foreach ($permissions as $permission) {
             Permission::create($permission);
         }
-        echo "Permissions table seeded\n";
+        $this->command->info('Permissions table seeded');
 
         /* Roles table */
         $roles = array(
@@ -370,7 +405,7 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         foreach ($roles as $role) {
             Role::create($role);
         }
-        echo "Roles table seeded\n";
+        $this->command->info('Roles table seeded');
 
         $user1 = User::find(1);
         $role1 = Role::find(1);
@@ -382,75 +417,5 @@ class UpdateMicrobiologyFunctionalities extends Migration {
         }
         //Assign role Administrator to user 1 administrator
         $user1->attachRole($role1);
-
-        $barcode = array("encoding_format" => 'code39', "barcode_width" => '2', "barcode_height" => '30', "text_size" => '11');
-        Barcode::create($barcode);
-        echo "Barcode table seeded\n";
-
-        $specimenTypeBlood = SpecimenType::create(["name" => "Blood"]);
-        echo "specimen_types seeded\n";
-
-        /* Test Categories table - These map on to the lab sections */
-        $testTypeCategoryHematology = TestCategory::create(array("name" => "HEMATOLOGY","description" => ""));
-        echo "Lab Sections seeded\n";
-
-
-        /* Measure Types */
-        $measureTypes = array(
-            array("id" => "1", "name" => "Numeric Range"),
-            array("id" => "2", "name" => "Alphanumeric Values"),
-            array("id" => "3", "name" => "Autocomplete"),
-            array("id" => "4", "name" => "Free Text")
-        );
-
-        foreach ($measureTypes as $measureType)
-        {
-            MeasureType::create($measureType);
-        }
-        echo "measure_types seeded\n";
-
-        echo "testtype_specimentypes seeded\n";
-
-        /* Instruments table */
-        $instrumentsData = array(
-            "name" => "Celltac F Mek 8222",
-            "description" => "Automatic analyzer with 22 parameters and WBC 5 part diff Hematology Analyzer",
-            "driver_name" => "KBLIS\\Plugins\\CelltacFMachine",
-            "ip" => "192.168.1.12",
-            "hostname" => "HEMASERVER"
-        );
-
-        $instrument = Instrument::create($instrumentsData);
-
-        echo "Instruments table seeded\n";
-
-        /* Test Types for prevalence */
-        $test_types_sickling = TestType::create(array("name" => "Sickling Test", "test_category_id" => $testTypeCategoryHematology->id));
-        
-        echo "Test Types seeded\n";
-
-        /* Test Types and specimen types relationship for prevalence */
-       
-         DB::insert('INSERT INTO testtype_specimentypes (test_type_id, specimen_type_id) VALUES (?, ?)',
-            array($test_types_sickling->id, $specimenTypeBlood->id));
-        
-
-        /*New measures for prevalence*/
-        $measure_sickling = Measure::create(array("measure_type_id" => "2", "name" => "Sickling Test", "unit" => ""));
-
-        // MeasureRange::create(array("measure_id" => $measure_sickling->id, "alphanumeric" => "AA"));
-        // MeasureRange::create(array("measure_id" => $measure_sickling->id, "alphanumeric" => "AS"));
-        // MeasureRange::create(array("measure_id" => $measure_sickling->id, "alphanumeric" => "Missing"));
     }
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		//
-	}
-
 }

@@ -40,6 +40,10 @@
 				<span class="glyphicon glyphicon-plus-sign"></span>
 				{{trans('messages.new-patient')}}
 			</a>
+			<!-- <a class="btn btn-sm btn-success" href="downloadExcel">
+				<span class="glyphicon glyphicon-plus-sign"></span>
+				Export to Excel
+			</a> -->
 		</div>
 	</div>
 	<div class="panel-body">
@@ -47,6 +51,7 @@
 			<thead>
 				<tr>
 					<th>{{trans('Sickle ID')}}</th>
+					<th>Field ID</th>
 					<th>{{Lang::choice('messages.name',1)}}</th>
 					<th>{{trans('messages.gender')}}</th>
 					<th>{{trans('messages.age')}}</th>
@@ -64,6 +69,7 @@
 					@endif
 					<td>{{ $patient->patient_number }}</td>
 					<td>{{ $patient->ulin}}</td>
+					<td>{{ $patient->field_id }}</td>
 					<td>{{ $patient->name }}</td>
 					<td>{{ ($patient->gender==0?trans('messages.male'):trans('messages.female')) }}</td>
 					<td>{{ $patient->getAge() }}</td>

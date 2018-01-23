@@ -890,4 +890,5 @@ Route::group(array("before" => "auth"), function()
             "as"   => "tribe.delete",
             "uses" => "TribeController@delete"
     ));
+     Route::post('downloadExcel', 'MaatwebsiteController');
 });

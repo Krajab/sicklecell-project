@@ -32,33 +32,9 @@
 							<h4 class="panel_heading panel_heading_first">{{trans('messages.aggregate-reports')}}</h4>
 							<ul>
 								<li>
-									<div><a href="{{ URL::route('reports.aggregate.prevalence')}}">
-										<span class="glyphicon glyphicon-tag"></span>
-										{{trans('messages.positivity-rates')}}</a>
-									</div>
-								</li>
-								<li>
-									<div><a href="{{ URL::route('reports.aggregate.surveillance')}}">
-										<span class="glyphicon glyphicon-tag"></span>
-										{{trans('messages.surveillance')}}</a>
-									</div>
-								</li>
-								<li>
-									<div><a href="{{ URL::route('reports.aggregate.counts')}}">
-										<span class="glyphicon glyphicon-tag"></span>
-										{{trans('messages.counts')}}</a>
-									</div>
-								</li>
-								<li>
 									<div><a href="{{ URL::route('reports.aggregate.tat')}}">
 										<span class="glyphicon glyphicon-tag"></span>
 										{{trans('messages.turnaround-time')}}</a>
-									</div>
-								</li>
-								<li>
-									<div><a href="{{ URL::route('reports.aggregate.infection')}}">
-										<span class="glyphicon glyphicon-tag"></span>
-										{{trans('messages.infection-report')}}</a>
 									</div>
 								</li>
 								<li>
@@ -67,41 +43,6 @@
 										{{trans('messages.user-statistics-report')}}</a>
 									</div>
 								</li>
-								<li>
-									<div><a href="{{ URL::route('reports.aggregate.hmis105')}}">
-										<span class="glyphicon glyphicon-tag"></span>
-										HMIS 105</a>
-									</div>
-								</li>
-<!-- 								<li>
-									<div><a href="{{ URL::route('reports.aggregate.moh706')}}">
-										<span class="glyphicon glyphicon-tag"></span>
-										{{trans('messages.moh-706')}}</a>
-									</div>
-								</li>
- 								<li>
-									<div><a href="{{ URL::route('reports.aggregate.cd4')}}">
-										<span class="glyphicon glyphicon-tag"></span>
-										{{trans('messages.cd4-report')}}</a>
-									</div>
-								</li>
-								<li>
-									<div><a href="{{ URL::route('reports.qualityControl')}}">
-										<span class="glyphicon glyphicon-tag"></span>
-										{{Lang::choice('messages.quality-control', 2)}}</a>
-									</div>
-								</li>
- -->
-							</ul>
-							<h4 class="panel_heading panel_heading_first">{{trans('messages.inventory-reports')}}</h4>
-							<ul>
-								<li>
-									<div><a href="{{ URL::route('reports.inventory')}}">
-										<span class="glyphicon glyphicon-tag"></span>
-										{{trans('messages.stock-levels')}}</a>
-									</div>
-								</li>
-							</ul>
 							<h4 class="panel_heading panel_heading_first">Dashboard</h4>
 							<ul>
 								<li>
@@ -141,10 +82,10 @@
 						<div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px; width: 215px; display: none;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 620px; display: none;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
 					</div>
 				</li>
-				<li>
+				<!-- <li>
 					<a href="{{ URL::route('visit.index') }}"><span class="ion-person"></span><span class="nav_title">Visits</span>
 					</a>
-				</li>
+				</li> -->
 				<li class="nav_trigger">
 					<a href="#">
 						<span class="ion-erlenmeyer-flask"></span>
@@ -154,14 +95,14 @@
 						<div class="side_inner ps-ready ps-container" style="height: 620px;">
 							<h4 class="panel_heading panel_heading_first"> Tests</h4>
 							<ul>
-								<li>
+								<!-- <li>
 									<div>
 										<a href="javascript:void(0)" data-toggle="modal" data-target="#new-test-modal-unhls">
-											<!--<span class="glyphicon glyphicon-plus-sign"></span>{{trans('messages.new-test')}}-->
+											<span class="glyphicon glyphicon-plus-sign"></span>{{trans('messages.new-test')}}
 											<span class="glyphicon glyphicon-plus-sign"></span> Make Test Request
 										</a>
 									</div>
-								</li>
+								</li> -->
 
 								<li>
 									<div>
@@ -170,14 +111,14 @@
 											<span class="glyphicon glyphicon-tag"></span> List of All Tests</a>
 									</div>
 								</li> 
-								<li>
+								<!-- <li>
 									<div>
 										<a href="{{URL::route('unhls_test.completed')}}">
 											<span class="glyphicon glyphicon-tag" ></span>{{trans('Completed Tests')}}
 										</a>
 									</div>
-								</li>
-																<li>
+								</li> -->
+																<!-- <li>
 									<div>
 										<a href="{{URL::route('unhls_test.notrecieved')}}">
 											<span class="glyphicon glyphicon-tag" ></span>{{trans('Samples Not Recieved')}}
@@ -191,13 +132,13 @@
 										</a>
 									</div>
 								</li>
-																<li>
+																<!-- <li>
 									<div>
 										<a href="{{URL::route('unhls_test.started')}}">
 											<span class="glyphicon glyphicon-tag" ></span>{{trans('Tests Started')}}
 										</a>
 									</div>
-								</li>
+								</li> --> 
 																<li>
 									<div>
 										<a href="{{URL::route('unhls_test.verified')}}">
@@ -211,7 +152,7 @@
 						<div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px; width: 215px; display: none;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 620px; display: none;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
 					</div>
 				</li>
-			@if(Entrust::can('manage_lab_configurations'))
+			<!-- @if(Entrust::can('manage_lab_configurations'))
 
 				<li class="nav_trigger">
 					<a href="#">
@@ -246,7 +187,7 @@
 						</div>
 					</div>
 				</li>
-			@endif
+			@endif -->
 				
 			@if(Entrust::can('manage_test_catalog'))
 				<li class="nav_trigger">
@@ -275,14 +216,14 @@
 									<a href="{{URL::route("testtype.index")}}">
 									<span class="glyphicon glyphicon-tag"></span>Test Types</a>
 								</li>
-								<li>
+								<!-- <li>
 									<a href="{{URL::route("drug.index")}}">
 									<span class="glyphicon glyphicon-tag"></span>Drugs</a>
 								</li>
 								<li>
 									<a href="{{URL::route("organism.index")}}">
 									<span class="glyphicon glyphicon-tag"></span>Organisms</a>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 					</div>
@@ -290,7 +231,7 @@
 			@endif
 
 
-			@if(Entrust::can('manage_inventory'))
+		<!-- 	@if(Entrust::can('manage_inventory'))
 				<li class="nav_trigger">
 					<a href="#">
 					<span class="ion-ios-cart"></span>
@@ -331,10 +272,10 @@
 						<div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px; width: 215px; display: none;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 620px; display: none;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
 					</div>
 				</li>
-			@endif
+			@endif -->
 
 
-				<li class="nav_trigger">
+				<!-- <li class="nav_trigger">
 					<a href="#">
 						<span class="ion-nuclear"></span>
 						<span class="nav_title">Biosafety & Biosecurity</span>
@@ -360,7 +301,7 @@
 						<div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px; width: 215px; display: none;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 620px; display: none;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
 					</div>
 				</li>
-
+ -->
 			@if(Entrust::can('manage_users'))
 
 				<li class="nav_trigger">
@@ -403,7 +344,7 @@
 				</li>
 			@endif
 				
-				<li class="nav_trigger">
+				<!-- <li class="nav_trigger">
 					<a href="#">
 						<span class="ion-ios-folder"></span>
 						<span class="nav_title">Other Resouces</span>
@@ -432,7 +373,7 @@
 
 						<div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px; width: 215px; display: none;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 620px; display: none;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
 					</div>
-				</li>
+				</li> -->
 
 			</ul>
 		</nav>

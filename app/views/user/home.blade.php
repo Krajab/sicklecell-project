@@ -1,7 +1,6 @@
 @extends("layout-menu")
 @section("content")
 
-<!-- <div class="panel panel-primary row" > -->
 
 	<div class="panel-body row">
 		<div class="btn-group container col-md-12">
@@ -27,16 +26,6 @@
 			</div>
 		</a>
 	</div>
-<!-- 	<div class="btn-group container col-xs-3">
-		<a class="link-tip" href="#" data-toggle="tooltip" data-placement="bottom" title="Click to access other resources e.g links to Viral load and EID Dashboard, CPHL websites">
-			<div class="panel panel-default">
-			<span class="ion-icon ion-ios-folder"></span> <br><span class="nav_title">OTHER RESOURCES</span>
-			</div>
-		</a>
-	</div>	
-</div> -->
-
-
 <!-- <div class="panel-body row"> -->
 	<div class="btn-group container  col-xs-4">
 		<a href="{{ URL::route('reports.index')}}" data-toggle="tooltip" data-placement="bottom" title="Click to view periodic reports">
@@ -53,14 +42,6 @@
 			</div>
 		</a>
 	</div>
-	
-<!-- 	<div class="btn-group container col-xs-3">
-		<a href="{{ URL::route('bbincidence.index')}}" data-toggle="tooltip" data-placement="bottom" title="Click to view and record biosafety and biosecurity incidents">
-			<div class="panel panel-default">
-			<span class="ion-icon ion-nuclear"></span> <br><span class="nav_title">BIOSAFETY & BIOSECURITY</span>
-			</div>
-		</a>
-	</div> -->
 	<div class="btn-group container col-xs-4">
 		<a href="{{ URL::route('user.index')}}" data-toggle="tooltip" data-placement="bottom" title="Click to manage user accounts and other Lab Configurations e.g creating Lab sections and new test type">
 			<div class="panel panel-default">

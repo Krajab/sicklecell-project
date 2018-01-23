@@ -30,21 +30,17 @@
 <hr>
     <footer class="footer">
         <div class="col-md-12 row">
-        	<div class="col-md-2 col-md-offset-4">
+        	<div class="col-md-2 col-md-offset-5">
         		<a href="http://health.go.ug/" target="_blank">
         			<img src="{{ Config::get('kblis.uganda-logo') }}" alt="Government of Uganda">
         		</a>	
         	</div>
-
-            <div class="col-md-2">
-                <a href="http://www.cdc.gov/" target="_blank">
-        			<img src="{{ Config::get('kblis.cdc-logo') }}" alt="Centres for Disease Control and Prevention">
-        		</a>
-        	</div>
         </div>
 
         <div>
+        	<div class="col-md-2 col-md-offset-5">
         		{{ HTML::link('http://www.cphl.go.ug', 'UNHLS &copy; ' . date("Y"))}}
+        	</div>
         </div>
     </footer>
 

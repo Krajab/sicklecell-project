@@ -35,7 +35,7 @@
         <script src="{{ URL::asset('js/jquery.easypiechart.min.js') }}"></script>
         <script src="{{ URL::asset('js/dashboard.js') }}"></script>
 
-        <!-- jQuery barcode script -->
+        <!-- jQuery barcode script -->      
         <script type="text/javascript" src="{{ asset('js/jquery-barcode-2.0.2.js') }} "></script>
         <title>{{ Config::get('kblis.name') }} </title>
     </head>

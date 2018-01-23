@@ -1,4 +1,4 @@
-@extends("layout")
+<!-- @extends("layout") -->
 @section("content")
 	<div>
 		<ol class="breadcrumb">
@@ -15,6 +15,7 @@
 		<div class="panel-body">
 		<!-- if there are creation errors, they will show here -->
 
+
 			@if($errors->all())
 				<div class="alert alert-danger">
 					{{ HTML::ul($errors->all()) }}
@@ -23,18 +24,8 @@
 
 			{{ Form::open(array('url' => 'unhls_patient', 'id' => 'form-create-patient')) }}
 				<div class="form-group">
-					{{ Form::label('patient_number', trans('messages.patient-number')) }}
-					{{ Form::text('patient_number', Input::old('patient_number'),
-						array('class' => 'form-control')) }}
-				</div>
-				<div class="form-group">
-					{{ Form::label('ulin', trans('messages.ulin'), array('class' => 'required')) }}
-					{{ Form::text('ulin', 'Auto generated upon succesfull save!',
-						array('class' => 'form-control', 'readonly' =>'true')) }}
-				</div>
-				<div class="form-group">
-					{{ Form::label('nin', trans('messages.national-id')) }}
-					{{ Form::text('nin', Input::old('nin'), array('class' => 'form-control')) }}
+					{{ Form::label('field_id', trans('')) }}
+					{{ Form::text('field_id', Input::old('field_id'), array('class' => 'form-control')) }}
 				</div>
 				<div class="form-group">
 					{{ Form::label('name', trans('messages.names'), array('class' => 'required')) }}
@@ -60,33 +51,40 @@
 					<span class="input-tag">{{trans('messages.female')}}</span></div>
 				</div>
 				<div class="form-group">
-					{{ Form::label('village_residence', trans('messages.residence-village')) }}
-					{{ Form::text('village_residence', Input::old('village_residence'), array('class' => 'form-control')) }}
+					{{Form::label('tribe', 'Tribe')}}
+					{{ Form::select('tribe', $tribe,
+					Input::old('tribe'),
+					['class' => 'form-control tribe']) }}
 				</div>
 				<div class="form-group">
-					{{ Form::label('village_workplace', trans('messages.workplace-village')) }}
-					{{ Form::text('village_workplace', Input::old('village_workplace'), array('class'=>'form-control')) }}
-				</div>
-				<div class="form-group">
-					{{ Form::label('address', trans('messages.physical-address')) }}
-					{{ Form::text('address', Input::old('address'), array('class' => 'form-control')) }}
-				</div>
-				<div class="form-group">
-					{{ Form::label('occupation', trans('messages.occupation')) }}
-					{{ Form::text('occupation', Input::old('occupation'), array('class' => 'form-control')) }}
+					{{Form::label('district', 'District')}}
+					{{ Form::select('district', $districts,
+					Input::old('districts'),
+					['class' => 'form-control district']) }}
 				</div>
 				<div class="form-group">
 					{{ Form::label('phone_number', trans('messages.phone-number')) }}
 					{{ Form::text('phone_number', Input::old('phone_number'), array('class' => 'form-control')) }}
 				</div>
-				<div class="form-group">
-					{{ Form::label('email', trans('messages.email-address')) }}
-					{{ Form::email('email', Input::old('email'), array('class' => 'form-control')) }}
-				</div>
+
+					<div class="form-group">
+						{{Form::label('', 'ENTER RESULTS')}}
+					</div>
+					<div class="form-pane panel panel-default">
+						<div class="col-md-6">
+							<div class="form-group">
+								{{Form::label('result', 'Result')}}
+								{{ Form::select('result' , $measureRanges,
+								Input::get('result'),
+								['class' => 'form-control specimen-type']) }}
+							</div>
+					</div>
+						
 				<div class="form-group actions-row">
 					{{ Form::button('<span class="glyphicon glyphicon-save"></span> '.trans('messages.save'),
 						['class' => 'btn btn-primary', 'onclick' => 'submit()']) }}
 				</div>
+			</div>
 
 			{{ Form::close() }}
 		</div>

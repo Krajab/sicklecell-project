@@ -91,6 +91,7 @@ class CreatekBLIStables extends Migration {
             $table->increments('id')->unsigned();
             $table->string('patient_number')->nullable();
             $table->string('ulin')->nullable();//todo: should be unique
+            $table->string('field_id')->nullable();
             $table->string('name', 100);
             $table->date('dob');
             $table->tinyInteger('gender')->default(0);
