@@ -11,17 +11,17 @@
 										<div class="stat_box">
 											<div class="stat_ico color_a"><i class="ion-ios-people"></i></div>
 											<div class="stat_content">
-												@if(UnhlsVisit::count() > 0)
-												<span class="stat_count">{{UnhlsVisit::whereMonth('created_at', '=', Carbon::today()->month)->count()}} 
-													({{UnhlsVisit::where('visit_type', '=', 'Out-patient')->whereMonth('created_at', '=', Carbon::today()->month)->count()*100/UnhlsVisit::count()}}% - Patients)</span>
-												@endif
+											<!-- 	@if(UnhlsVisit::count() > 0) -->
+												<span class="stat_count">{{UnhlsPatient::count()}}<!-- {{UnhlsVisit::whereMonth('created_at', '=', Carbon::today()->month)->count()}} --> 
+												<!-- 	({{UnhlsVisit::where('visit_type', '=', 'Out-patient')->whereMonth('created_at', '=', Carbon::today()->month)->count()*100/UnhlsVisit::count()}}% - Patients)</span>
+												@endif -->
 												<span class="stat_name">Number of patients</span>
 											</div>
 										</div>
 											<div class="stat_box">
 												<div class="stat_ico color_a"><i class="ion-clipboard"></i></div>
 												<div class="stat_content">
-													<span class="stat_count">{{UnhlsTest::where('time_completed','!=', 'NULL')->whereMonth('time_created', '=', Carbon::today()->month )->count()}}</span>
+													<span class="stat_count">{{UnhlsTest::count()}}</span>
 													<span class="stat_name">Tests done</span>
 												</div>
 												
@@ -61,7 +61,7 @@
 										<div class="stat_box">
 											<div class="stat_ico color_c"><i class="ion-ios-people"></i></div>
 											<div class="stat_content">
-												<span class="stat_count">{{UnhlsSpecimen::whereMonth('time_collected', '=', Carbon::today()->month)->count()}}</span>
+												<span class="stat_count">{{UnhlsSpecimen::count()}}<!-- {{UnhlsSpecimen::whereMonth('time_collected', '=', Carbon::today()->month)->count()}} --></span>
 												<span class="stat_name">Samples collected</span>
 											</div>
 										</div>
