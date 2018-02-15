@@ -16,12 +16,12 @@ class UpdateVisitsTable extends Migration {
 		// todo: just avoiding dev havoc
 		Schema::table('unhls_visits', function($table)
 		{
-			$table->integer('ward_id')->nullable();
+			$table->integer('hospitalized')->nullable();
 		});
 
 		Schema::table('unhls_visits', function($table)
 		{
-			$table->string('bed_no')->nullable();
+			$table->integer('on_antibiotics')->nullable();
 		});
 	}
 

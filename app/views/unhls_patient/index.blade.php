@@ -47,7 +47,7 @@
 		</div>
 	</div>
 	<div class="panel-body">
-		<table class="table table-striped table-hover table-bordered search-table">
+		<table class="custom-data-table table table-striped dataTable no-footer display nowrap" id="personnel" data-form="deleteForm">
 			<thead>
 				<tr>
 					<th>{{trans('Sickle ID')}}</th>
